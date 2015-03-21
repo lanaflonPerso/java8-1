@@ -28,6 +28,13 @@ public class FileList {
     private void java8() {
         System.out.println(Arrays.asList(new File(".").listFiles(pathname -> !pathname.isDirectory())));
         System.out.println(Arrays.asList(new File(".").listFiles(File::isDirectory)));
+        Arrays.asList(new File(".").listFiles(pathname -> !pathname.isDirectory())).stream().forEach(System.out::println);
+        Arrays.asList(new File(".").listFiles(pathname -> !pathname.isDirectory())).stream().map(x -> x + ", ").forEach(System.out::print);
+        System.out.println();
+        String result = Arrays.asList(new File(".").listFiles(pathname -> !pathname.isDirectory())).stream().map(x -> x + "").reduce("", (a, b) -> a + ", " + b);
+        System.out.println(result);
+        result = Arrays.asList(new File(".").listFiles(pathname -> !pathname.isDirectory())).stream().map(x -> x + "").reduce("", (a, b) -> a + (a.isEmpty() ? "" : ", ") + b);
+        System.out.println(result);
     }
 
     private void go() {
