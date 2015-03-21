@@ -3,6 +3,7 @@ package com.michalprzysucha.java8.lamdas;
 import java.io.File;
 import java.io.FileFilter;
 import java.util.Arrays;
+import java.util.Optional;
 
 /**
  * @author Michal Przysucha
@@ -35,6 +36,9 @@ public class FileList {
         System.out.println(result);
         result = Arrays.asList(new File(".").listFiles(pathname -> !pathname.isDirectory())).stream().map(x -> x + "").reduce("", (a, b) -> a + (a.isEmpty() ? "" : ", ") + b);
         System.out.println(result);
+        Optional<String> res2 = Arrays.asList(new File(".").listFiles(pathname -> !pathname.isDirectory())).stream().map(x -> x + "").reduce((a, b) -> a + ", " + b);
+        System.out.println("File list: " + res2.get());
+
     }
 
     private void go() {
