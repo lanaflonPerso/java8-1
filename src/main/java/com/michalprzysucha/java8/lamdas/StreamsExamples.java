@@ -13,7 +13,7 @@ import static java.util.Arrays.asList;
  * @author Michal Przysucha
  * @since 2015-03-18
  */
-public class LambdaExamples {
+public class StreamsExamples {
 
     private void java8() {
         List<Integer> numbers = asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
@@ -35,6 +35,8 @@ public class LambdaExamples {
 
         Stream<Integer> aaa3 = IntStream.range(1000, 10000).filter(this::isPrime).boxed();
         Optional<Integer> aaa4 = IntStream.range(1000, 10000).filter(this::isPrime).boxed().findFirst();
+
+
     }
 
     private boolean isPrime(int x) {
@@ -54,7 +56,7 @@ public class LambdaExamples {
     }
 
     public static void main(String[] args) {
-        new LambdaExamples().go();
+        new StreamsExamples().go();
     }
 
 }
