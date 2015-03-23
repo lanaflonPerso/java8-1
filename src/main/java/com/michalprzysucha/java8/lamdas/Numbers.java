@@ -2,6 +2,8 @@ package com.michalprzysucha.java8.lamdas;
 
 
 import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ForkJoinTask;
+import java.util.concurrent.RecursiveAction;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -15,20 +17,37 @@ public class Numbers {
 
     private Fibonacci fibonacci;
 
+    private void java7() {
+        ForkJoinPool forkJoinPool = new ForkJoinPool(2);
+//        TODO
+//        forkJoinPool.invoke(new RecursiveAction() {
+//            @Override
+//            protected void compute() {
+//
+//            }
+//        });
+//        TODO
+    }
+
     private void java8() {
         Stream<Integer> oneTwoThree = Stream.<Integer>builder().add(1).add(2).add(3).build();
         oneTwoThree.forEach(System.out::println);
-//        oneTwoThree.forEach(System.out::println); // stream has already been operated upon or closed
-//        Stream.<Integer>iterate(0, i -> i + 1).forEach(System.out::println); // never ends
+//        oneTwoThree.forEach(System.out::println); // IllegalStateException: stream has already been operated upon or closed
+//        Stream.<Integer>iterate(0, i -> i + 1).forEach(System.out::println); // this will never ends
         Stream.<Integer>iterate(0, i -> i + 1).limit(1000).forEach(System.out::println);
 
 //        Stream.generate(fibonacci).limit(100).forEach(System.out::println);
 
 
         ForkJoinPool forkJoinPool = new ForkJoinPool(2);
-        forkJoinPool.submit(() -> {
-            IntStream.range(1, 1_000_000).boxed().filter(Numbers::isPrime).limit(100).collect(Collectors.toList());
-        });
+//        TODO
+//        forkJoinPool.submit(() -> {
+//            IntStream.range(1, 1_000_000).boxed().filter(Numbers::isPrime).limit(100).collect(Collectors.toList());
+//        });
+//        TODO
+
+
+
 
     }
 
