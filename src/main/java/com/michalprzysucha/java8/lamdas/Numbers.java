@@ -1,12 +1,11 @@
 package com.michalprzysucha.java8.lamdas;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
-import java.util.concurrent.RecursiveAction;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.concurrent.RecursiveTask;
 import java.util.stream.Stream;
 
 /**
@@ -18,15 +17,6 @@ public class Numbers {
     private Fibonacci fibonacci;
 
     private void java7() {
-        ForkJoinPool forkJoinPool = new ForkJoinPool(2);
-//        TODO
-//        forkJoinPool.invoke(new RecursiveAction() {
-//            @Override
-//            protected void compute() {
-//
-//            }
-//        });
-//        TODO
     }
 
     private void java8() {
@@ -38,19 +28,7 @@ public class Numbers {
 
 //        Stream.generate(fibonacci).limit(100).forEach(System.out::println);
 
-
-        ForkJoinPool forkJoinPool = new ForkJoinPool(2);
-//        TODO
-//        forkJoinPool.submit(() -> {
-//            IntStream.range(1, 1_000_000).boxed().filter(Numbers::isPrime).limit(100).collect(Collectors.toList());
-//        });
-//        TODO
-
-
-
-
     }
-
 
 
     private void go() {
@@ -63,18 +41,6 @@ public class Numbers {
 
     public static void main(String[] args) {
         new Numbers(new Fibonacci()).go();
-    }
-
-    public static boolean isPrime(int x) {
-        boolean isPrime = x >= 2;
-        int i;
-        for (i = 2; isPrime && i <= x / 2; i++) {
-            if (x % i == 0) {
-                isPrime = false;
-            }
-        }
-        System.out.println(x + " is " + (isPrime ? "" : "not ") + " a prime, num of iters: " + (i - 1));
-        return isPrime;
     }
 
 }
