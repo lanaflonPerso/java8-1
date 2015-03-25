@@ -8,13 +8,11 @@ import java.util.function.Supplier;
  * @since 2015-03-21
  */
 public class Fibonacci implements Supplier<BigInteger> {
-    private BigInteger f = BigInteger.ZERO;
-    private BigInteger s = BigInteger.ONE;
+    private BigInteger f = BigInteger.ONE;
+    private BigInteger s = BigInteger.ZERO;
     public BigInteger get() {
-        BigInteger res = s;
-        BigInteger tmp = f.add(s);
-        f = s;
-        s = tmp;
-        return res;
+        s = f.add(s);
+        f = s.subtract(f);
+        return s;
     }
 }

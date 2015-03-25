@@ -26,7 +26,8 @@ public class Numbers {
 //        Stream.<Integer>iterate(0, i -> i + 1).forEach(System.out::println); // this will never ends
         Stream.<Integer>iterate(0, i -> i + 1).limit(1000).forEach(System.out::println);
 
-//        Stream.generate(fibonacci).limit(100).forEach(System.out::println);
+        System.out.println("Fibonacci numbers:");
+        Stream.generate(fibonacci).limit(100).forEach(System.out::println);
 
     }
 
