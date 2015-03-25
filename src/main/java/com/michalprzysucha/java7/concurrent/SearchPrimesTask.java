@@ -49,8 +49,7 @@ public class SearchPrimesTask extends RecursiveTask<List<Integer>> {
 
     public static boolean isPrime(int x) {
         boolean isPrime = x >= 2;
-        int i;
-        for (i = 2; isPrime && i <= x / 2; i++) {
+        for (int i = 2, max = (int) Math.sqrt(x); isPrime && i <= max; i++) {
             if (x % i == 0) {
                 isPrime = false;
             }
