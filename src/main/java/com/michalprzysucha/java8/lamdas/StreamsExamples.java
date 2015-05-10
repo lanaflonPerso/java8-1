@@ -1,8 +1,11 @@
 package com.michalprzysucha.java8.lamdas;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalInt;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -26,6 +29,12 @@ public class StreamsExamples {
 //        Arrays.asList(1, 2, 3, 4, 5, 6, 7).stream().filter(this::isPrime);
 //        Arrays.asList(1, 2, 3, 4, 5, 6, 7).stream().filter(this::isPrime).collect(Collectors.toList());
 //        IntStream.range(1000, 10000).filter(this::isPrime).boxed().collect(Collectors.toList());
+
+        IntStream.range(1000, 10000).filter(this::isPrime).boxed();
+        IntStream.range(1000, 10000).boxed();
+
+        Stream.builder().add(4).add("s").add(BigDecimal.ONE).build().forEach(System.out::println);
+
         IntStream.range(1000, 10000).filter(this::isPrime).boxed().findFirst().get();
 //        IntStream.range(1000, 10000).filter(this::isPrime).findFirst().getAsInt();
         System.out.println("------------------");
@@ -36,6 +45,16 @@ public class StreamsExamples {
         Stream<Integer> aaa3 = IntStream.range(1000, 10000).filter(this::isPrime).boxed();
         Optional<Integer> aaa4 = IntStream.range(1000, 10000).filter(this::isPrime).boxed().findFirst();
 
+        System.out.println();
+        System.out.println("flatMap");
+        List<Object> res = Stream.of(1, 2, 5, 6, 9, 12, 13, 20, 100).flatMap(new Function<Integer, Stream<?>>() {
+            @Override
+            public Stream<?> apply(Integer integer) {
+                return Stream.generate(new Fibonacci()).filter(x -> x.compareTo(new BigInteger(Integer.toString(integer))) > 0).limit(3);
+            }
+        }).collect(Collectors.toList());
+        System.out.println(res);
+        System.out.println("flatMap");
 
     }
 
